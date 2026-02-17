@@ -5,9 +5,6 @@ import { GradientTextDirective } from '../../shared/directives/gradient-text.dir
   selector: 'app-hero',
   imports: [GradientTextDirective],
   templateUrl: './hero.html',
-  styleUrl: './hero.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Hero {
-
-}
+export class Hero {}
