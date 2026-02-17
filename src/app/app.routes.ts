@@ -6,8 +6,21 @@ export const routes: Routes = [
     loadComponent: () => import('./layout/main-layout/main-layout').then((m) => m.MainLayout),
     children: [
       {
-        path: '',
+        path: 'home',
         loadComponent: () => import('./home/home').then((m) => m.Home),
+      },
+      {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.routes').then((m) => m.routes),
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home',
+      },
+      {
+        path: '**',
+        redirectTo: 'home',
       },
     ],
   },

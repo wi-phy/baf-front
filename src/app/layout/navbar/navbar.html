@@ -3,13 +3,15 @@
     <a href="">
       <img ngSrc="images/logo-baf-music.png" alt="logo" width="64" height="64" priority />
     </a>
-    <button class="btn btn-ghost text-gray-400 hover:text-white">Tutos</button>
-    <button class="btn btn-ghost text-gray-400 hover:text-white">Formations</button>
-    <button class="btn btn-ghost text-gray-400 hover:text-white">Actus</button>
-    <button class="btn btn-ghost text-gray-400 hover:text-white">Pricing</button>
+    <button type="button" class="btn btn-ghost text-gray-400 hover:text-white">Tutos</button>
+    <button type="button" class="btn btn-ghost text-gray-400 hover:text-white">Formations</button>
+    <button type="button" class="btn btn-ghost text-gray-400 hover:text-white">Actus</button>
+    <button type="button" class="btn btn-ghost text-gray-400 hover:text-white">Pricing</button>
   </div>
   <div class="flex items-center gap-4">
-    <button class="btn btn-ghost">Connexion</button>
-    <button class="btn btn-soft btn-accent">Créer un compte</button>
+    <button type="button" class="btn btn-ghost" routerLink="/auth/login">Connexion</button>
+    <button type="button" class="btn btn-soft btn-accent" routerLink="/auth/sign-up">
+      Créer un compte
+    </button>
   </div>
 </nav>
