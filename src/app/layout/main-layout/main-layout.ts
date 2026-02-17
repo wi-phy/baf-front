@@ -7,5 +7,8 @@ import { Navbar } from '../navbar/navbar';
   imports: [RouterOutlet, Navbar],
   templateUrl: './main-layout.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'flex flex-col h-full items-center',
+  },
 })
 export class MainLayout {}
