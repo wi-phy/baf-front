@@ -1,13 +1,57 @@
 <div class="flex flex-col items-center w-96 gap-12">
   <h2 class="text-5xl font-bold">Créer un compte</h2>
   <div class="flex flex-col items-center gap-5 w-80">
-    <input type="text" placeholder="Email" class="input input-lg input-accent" />
-    <input type="password" placeholder="Mot de passe" class="input input-lg input-accent" />
+    <!-- Email -->
     <input
-      type="password"
-      placeholder="Confirmation du mot de passe"
+      type="text"
+      [formField]="signUpForm.email"
+      placeholder="Email"
       class="input input-lg input-accent"
     />
+    <!-- Password -->
+    <div class="relative w-full">
+      <input
+        id="password"
+        [type]="isPasswordVisible() ? 'text' : 'password'"
+        [formField]="signUpForm.password"
+        placeholder="Mot de passe"
+        class="input input-lg input-accent"
+      />
+      <!-- Password Visibility -->
+      <label
+        for="password"
+        class="absolute flex top-1/2 -translate-y-1/2 -right-7 tooltip tooltip-right"
+        [attr.data-tip]="isPasswordVisible() ? 'Masquer' : 'Afficher'"
+        (click)="togglePasswordVisibility()"
+      >
+        <i
+          class="ph"
+          [class]="isPasswordVisible() ? 'ph-eye-closed' : 'ph-eye'"
+        ></i>
+      </label>
+    </div>
+    <!-- Confirm Password -->
+    <div class="relative w-full">
+      <input
+        id="confirm-password"
+        [type]="isConfirmPasswordVisible() ? 'text' : 'password'"
+        [formField]="signUpForm.confirmPassword"
+        placeholder="Confirmation du mot de passe"
+        class="input input-lg input-accent"
+      />
+      <!-- Confirm Password Visibility -->
+      <label
+        for="confirm-password"
+        class="absolute flex top-1/2 -translate-y-1/2 -right-7 tooltip tooltip-right"
+        [attr.data-tip]="isConfirmPasswordVisible() ? 'Masquer' : 'Afficher'"
+        (click)="toggleConfirmPasswordVisibility()"
+      >
+        <i
+          class="ph"
+          [class]="isConfirmPasswordVisible() ? 'ph-eye-closed' : 'ph-eye'"
+        ></i>
+      </label>
+    </div>
     <div class="flex justify-end w-full mt-4">
       <button class="btn btn-lg btn-accent">Créer un compte</button>
     </div>
