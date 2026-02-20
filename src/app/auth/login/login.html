@@ -1,40 +1,68 @@
 <div class="flex flex-col items-center w-96 gap-12">
   <h2 class="text-5xl font-bold">Connexion</h2>
-  <div class="flex flex-col items-center gap-5 w-80">
+  <form class="flex flex-col items-center gap-5 w-80" novalidate (submit)="onSubmit($event)">
     <!-- Email -->
-    <input
-      type="text"
-      [formField]="loginForm.email"
-      placeholder="Email"
-      class="input input-lg input-accent"
-    />
+    @let emailField = loginForm.email();
+    @let emailErrors = emailField.errors();
+    <div class="relative flex flex-col gap-2 w-full">
+      <input
+        type="email"
+        [formField]="loginForm.email"
+        placeholder="Email"
+        class="input input-lg input-accent"
+        [class.input-error]="emailErrors.length > 0 && emailField.touched()"
+      />
+      <!--  Email validation errors -->
+      @if (emailErrors.length > 0 && emailField.touched()) {
+        <div class="flex tooltip tooltip-right absolute top-1/2 -translate-y-1/2 -right-7">
+          <div class="tooltip-content">
+            @for (error of emailErrors; track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
+          <i class="ph ph-warning-circle text-red-400"></i>
+        </div>
+      }
+    </div>
     <!-- Password -->
-    <div class="relative w-full">
+    @let passwordField = loginForm.password();
+    @let passwordErrors = passwordField.errors();
+    <div class="relative flex flex-col gap-2 w-full">
       <input
         id="password"
         [type]="isPasswordVisible() ? 'text' : 'password'"
         [formField]="loginForm.password"
         placeholder="Mot de passe"
         class="input input-lg input-accent"
+        [class.input-error]="passwordErrors.length > 0 && passwordField.touched()"
       />
       <!-- Password Visibility -->
       <label
         for="password"
-        class="absolute flex top-1/2 -translate-y-1/2 -right-7 tooltip tooltip-right"
+        class="absolute flex top-1/2 -translate-y-1/2 right-3 tooltip tooltip-top"
         [attr.data-tip]="isPasswordVisible() ? 'Masquer' : 'Afficher'"
         (click)="togglePasswordVisibility()"
       >
-        <i
-          class="ph"
-          [class]="isPasswordVisible() ? 'ph-eye-closed' : 'ph-eye'"
-        ></i>
+        <i class="ph" [class]="isPasswordVisible() ? 'ph-eye-closed' : 'ph-eye'"></i>
       </label>
+      <!--  Password validation errors -->
+      @if (passwordErrors.length > 0 && passwordField.touched()) {
+        <div class="flex tooltip tooltip-right absolute top-1/2 -translate-y-1/2 -right-7">
+          <div class="tooltip-content">
+            @for (error of passwordErrors; track error.kind) {
+              <div>{{ error.message }}</div>
+            }
+          </div>
+          <i class="ph ph-warning-circle text-red-400"></i>
+        </div>
+      }
     </div>
+
     <div class="flex items-center mt-4 w-full justify-between">
       <button type="button" class="btn btn-link text-sm text-gray-400">
         Mot de passe oublié ?
       </button>
-      <button type="button" class="btn btn-lg btn-accent">Connexion</button>
+      <button type="submit" class="btn btn-lg btn-accent">Connexion</button>
     </div>
-  </div>
+  </form>
 </div>
